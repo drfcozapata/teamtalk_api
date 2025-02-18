@@ -1,8 +1,8 @@
 {
   "name": "teamtalk_api",
   "version": "1.0.0",
-  "description": "API para la aplicación TeamTalk Web",
-  "main": "index.js",
+  "description": "RESTful API developed to serve TeamTalk Web App",
+  "main": "server.js",
   "scripts": {
     "dev": "node --watch server",
     "start": "node server",
@@ -10,11 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "teamtalk_api"
+    "url": "https://github.com/drfcozapata/teamtalk_api"
   },
   "keywords": [
     "RESTful",
-    "API"
+    "API",
+    "Node.js",
+    "Express.js",
+    "Sequelize",
+    "MySQL"
   ],
   "author": "Francisco Zapata",
   "license": "MIT",
