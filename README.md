@@ -1,6 +1,6 @@
 # TeamTalk Web API
 
-RESTful API developed to serve TeamTalk Web App using Node.js, Express.js, Sequelize and MySQL.
+RESTful API developed to serve TeamTalk Web App using Node.js, Express.js, Sequelize and MySQL with JWT Auth Login.
 
 ## Tech Dependencies
 
@@ -8,7 +8,9 @@ RESTful API developed to serve TeamTalk Web App using Node.js, Express.js, Seque
 - Bcryptjs 3.0.2
 - Body-parser 1.20.3
 - Cors 2.8.5
+- Dotenv 16.4.7
 - Express 4.21.2
+- JsonWebToken 9.0.2
 - Mysql2 3.12.0
 - Sequelize 6.37.5
 

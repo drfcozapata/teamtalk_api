@@ -18,7 +18,8 @@
     "Node.js",
     "Express.js",
     "Sequelize",
-    "MySQL"
+    "MySQL",
+    "JWT"
   ],
   "author": "Francisco Zapata",
   "license": "MIT",

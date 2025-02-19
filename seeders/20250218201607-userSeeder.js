@@ -22,8 +22,8 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        name: "Ana Karyna Herrera",
-        email: "anak@email.com",
+        name: "James Bond",
+        email: "bond007@mi5.gov.uk",
         password:
           "$2a$10$uvnCeNMUg/68fWYj74/Ec.py3q2mkc0iqOCliM.0En8Zb7ajwHUsu",
         createdAt: new Date(),

@@ -4,10 +4,10 @@ const cors = require("cors");
 const db = require("./models");
 const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
-const listEndpoints = require("express-list-endpoints");
+// const listEndpoints = require("express-list-endpoints");
+require("dotenv").config();
 
 const app = express();
-require("dotenv").config();
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -19,10 +19,10 @@ app.use("/api", authRoutes);
 db.sequelize
   .sync()
   .then(() => {
-    console.log("Database synchronized");
+    console.log("Base de Datos sincronizada");
   })
   .catch((err) => {
-    console.error("Error synchronizing database:", err);
+    console.error("Error sincronizando la base de datos:", err);
   });
 
 module.exports = app;
