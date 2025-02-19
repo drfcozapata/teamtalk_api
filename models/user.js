@@ -36,6 +36,14 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "User",
+      defaultScope: {
+        attributes: { exclude: ["password"] },
+      },
+      scopes: {
+        withPassword: {
+          attributes: {},
+        },
+      },
       hooks: {
         beforeCreate: async (user) => {
           const salt = await bcrypt.genSalt(10);
@@ -44,6 +52,10 @@ module.exports = (sequelize, DataTypes) => {
       },
     }
   );
+
+  User.prototype.comparePassword = async function (password) {
+    return await bcrypt.compare(password, this.password);
+  };
 
   return User;
 };

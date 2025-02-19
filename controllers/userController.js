@@ -4,7 +4,10 @@ const User = db.User;
 exports.createUser = async (req, res) => {
   try {
     const user = await User.create(req.body);
-    res.status(201).json(user);
+    const userResponse = user.get({ plain: true });
+    delete userResponse.password;
+
+    res.status(201).json(userResponse);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
