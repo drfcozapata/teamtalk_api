@@ -2,19 +2,27 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const db = require("./models");
-const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
-// const listEndpoints = require("express-list-endpoints");
+const noticeRoutes = require("./routes/noticeRoutes");
+const messageRoutes = require("./routes/messageRoutes");
+const personalProfileRoutes = require("./routes/personalProfileRoutes");
+const payrollRoutes = require("./routes/payrollRoutes");
+const userRoutes = require("./routes/userRoutes");
+const listEndpoints = require("express-list-endpoints");
 require("dotenv").config();
 
 const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use("/api", userRoutes);
 app.use("/api", authRoutes);
+app.use("/api", noticeRoutes);
+app.use("/api", messageRoutes);
+app.use("/api", personalProfileRoutes);
+app.use("/api", payrollRoutes);
+app.use("/api", userRoutes);
 
-// console.log(listEndpoints(app));
+console.log(listEndpoints(app));
 
 db.sequelize
   .sync()
