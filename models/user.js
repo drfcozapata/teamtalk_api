@@ -15,26 +15,31 @@ module.exports = (sequelize, DataTypes) => {
         as: "receivedMessages",
       });
 
-      // User.hasOne(models.PersonalProfile, {
-      //   foreignKey: "user_id",
-      //   as: "personalProfile",
-      // });
+      User.hasMany(models.Notice, {
+        foreignKey: "user_id",
+        as: "notices",
+      });
 
-      // User.hasMany(models.Payroll, {
-      //   foreignKey: "user_id",
-      //   as: "payrolls",
-      // });
+      User.hasMany(models.Payroll, {
+        foreignKey: "user_id",
+        as: "payrolls",
+      });
+
+      User.hasOne(models.PersonalProfile, {
+        foreignKey: "user_id",
+        as: "personalProfile",
+      });
     }
   }
 
   User.init(
     {
       name: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(70),
         allowNull: false,
       },
       email: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(100),
         allowNull: false,
         unique: true,
         validate: {
@@ -42,11 +47,11 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       password: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(100),
         allowNull: false,
       },
       role: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(15),
         allowNull: false,
       },
       blocked: {
@@ -55,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: false,
       },
       profile_photo_path: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(50),
         allowNull: true,
       },
     },

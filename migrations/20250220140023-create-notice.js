@@ -3,51 +3,45 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("users", {
+    await queryInterface.createTable("notices", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
-        type: Sequelize.STRING(70),
+      user_id: {
+        type: Sequelize.BIGINT,
         allowNull: false,
       },
-      email: {
+      category: {
+        type: Sequelize.STRING(25),
+        allowNull: false,
+      },
+      title: {
+        type: Sequelize.STRING(120),
+        allowNull: false,
+      },
+      content: {
+        type: Sequelize.STRING(2000),
+        allowNull: false,
+      },
+      img: {
         type: Sequelize.STRING(100),
-        allowNull: false,
-        unique: true,
-      },
-      password: {
-        type: Sequelize.STRING(100),
-        allowNull: false,
-      },
-      role: {
-        type: Sequelize.STRING(15),
-        allowNull: false,
-      },
-      blocked: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
-      },
-      profile_photo_path: {
-        type: Sequelize.STRING(50),
         allowNull: true,
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false,
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false,
       },
     });
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("users");
+    await queryInterface.dropTable("notices");
   },
 };
