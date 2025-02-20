@@ -1,6 +1,14 @@
 const jwt = require("jsonwebtoken");
 const db = require("../models");
 
+exports.showLoginForm = async (req, res) => {
+  return res
+    .status(403)
+    .json({
+      message: "Este sería el sustituto temporal de la vista del Login",
+    });
+};
+
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 

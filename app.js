@@ -8,7 +8,7 @@ const messageRoutes = require("./routes/messageRoutes");
 const personalProfileRoutes = require("./routes/personalProfileRoutes");
 const payrollRoutes = require("./routes/payrollRoutes");
 const userRoutes = require("./routes/userRoutes");
-const listEndpoints = require("express-list-endpoints");
+// const listEndpoints = require("express-list-endpoints");
 require("dotenv").config();
 
 const app = express();
@@ -22,7 +22,7 @@ app.use("/api", personalProfileRoutes);
 app.use("/api", payrollRoutes);
 app.use("/api", userRoutes);
 
-console.log(listEndpoints(app));
+// console.log(listEndpoints(app));
 
 db.sequelize
   .sync()
