@@ -4,13 +4,26 @@ const bcrypt = require("bcryptjs");
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      User.hasMany(models.Message, {
+        foreignKey: "user_id",
+        as: "sentMessages",
+      });
+
+      User.hasMany(models.Message, {
+        foreignKey: "recipient_id",
+        as: "receivedMessages",
+      });
+
+      // User.hasOne(models.PersonalProfile, {
+      //   foreignKey: "user_id",
+      //   as: "personalProfile",
+      // });
+
+      // User.hasMany(models.Payroll, {
+      //   foreignKey: "user_id",
+      //   as: "payrolls",
+      // });
     }
   }
 
@@ -32,10 +45,24 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      role: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      blocked: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
+      profile_photo_path: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
     },
     {
       sequelize,
       modelName: "User",
+      tableName: "users",
       defaultScope: {
         attributes: { exclude: ["password"] },
       },
@@ -46,8 +73,16 @@ module.exports = (sequelize, DataTypes) => {
       },
       hooks: {
         beforeCreate: async (user) => {
-          const salt = await bcrypt.genSalt(10);
-          user.password = await bcrypt.hash(user.password, salt);
+          if (user.password) {
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(user.password, salt);
+          }
+        },
+        beforeUpdate: async (user) => {
+          if (user.changed("password")) {
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(user.password, salt);
+          }
         },
       },
     }
@@ -55,6 +90,12 @@ module.exports = (sequelize, DataTypes) => {
 
   User.prototype.comparePassword = async function (password) {
     return await bcrypt.compare(password, this.password);
+  };
+
+  User.prototype.getProfilePhotoUrlAttribute = function () {
+    return this.profile_photo_path
+      ? `/storage/${this.profile_photo_path}`
+      : "/default-profile.png";
   };
 
   return User;

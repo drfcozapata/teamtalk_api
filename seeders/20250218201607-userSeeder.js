@@ -3,21 +3,14 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-     */
-    await queryInterface.bulkInsert("Users", [
+    await queryInterface.bulkInsert("users", [
       {
         name: "Francisco Zapata",
         email: "drfcozapata@gmail.com",
         password:
           "$2a$10$uvnCeNMUg/68fWYj74/Ec.py3q2mkc0iqOCliM.0En8Zb7ajwHUsu",
+        role: "SuperAdmin",
+        blocked: false,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -26,6 +19,8 @@ module.exports = {
         email: "bond007@mi5.gov.uk",
         password:
           "$2a$10$uvnCeNMUg/68fWYj74/Ec.py3q2mkc0iqOCliM.0En8Zb7ajwHUsu",
+        role: "Administrador",
+        blocked: false,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -34,6 +29,8 @@ module.exports = {
         email: "john@example.com",
         password:
           "$2a$10$uvnCeNMUg/68fWYj74/Ec.py3q2mkc0iqOCliM.0En8Zb7ajwHUsu",
+        role: "Empleado",
+        blocked: true,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -42,6 +39,8 @@ module.exports = {
         email: "jane@example.com",
         password:
           "$2a$10$uvnCeNMUg/68fWYj74/Ec.py3q2mkc0iqOCliM.0En8Zb7ajwHUsu",
+        role: "Empleado",
+        blocked: false,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -49,14 +48,8 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
     async (queryInterface, Sequelize) => {
-      await queryInterface.bulkDelete("Users", null, {});
+      await queryInterface.bulkDelete("users", null, {});
     };
   },
 };
