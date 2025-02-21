@@ -25,7 +25,7 @@ app.use("/api", userRoutes);
 // console.log(listEndpoints(app));
 
 db.sequelize
-  .sync()
+  .sync({ logging: false })
   .then(() => {
     console.log("Base de Datos sincronizada");
   })

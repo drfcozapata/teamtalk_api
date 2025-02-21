@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const personalProfileController = require("../controllers/personalProfileController");
 const authMiddleware = require("../middlewares/authMiddleware");
-const { checkIfBlocked } = require("../middlewares/checkIfBlocked");
+const checkIfBlocked = require("../middlewares/checkIfBlocked");
 
 router.use(checkIfBlocked);
 
@@ -12,12 +12,12 @@ router.get(
   personalProfileController.index
 );
 router.put(
-  "/personal-profiles/:profile/update",
+  "/personal-profiles/:pecodigo/update",
   authMiddleware,
   personalProfileController.update
 );
 router.delete(
-  "/personal-profiles/:profile/delete",
+  "/personal-profiles/:pecodigo/delete",
   authMiddleware,
   personalProfileController.destroy
 );

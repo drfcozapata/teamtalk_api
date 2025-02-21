@@ -47,15 +47,18 @@ exports.index = async (req, res) => {
 
 exports.update = async (req, res) => {
   try {
-    const { profileId } = req.params;
+    const { pecodigo } = req.params;
     const profileData = req.body;
 
-    const personalProfile = await PersonalProfile.findByPk(profileId);
+    const personalProfile = await PersonalProfile.findOne({
+      where: { pecodigo },
+    });
+
     if (!personalProfile) {
       return res.status(404).json({ error: "Perfil no encontrado" });
     }
 
-    const user = await User.findByPk(personalProfile.userId);
+    const user = await User.findByPk(personalProfile.user_id);
     if (user.profilePhotoPath) {
       profileData.pefoto = `storage/${user.profilePhotoPath}`;
     }
@@ -75,8 +78,11 @@ exports.update = async (req, res) => {
 
 exports.destroy = async (req, res) => {
   try {
-    const { profileId } = req.params;
-    const personalProfile = await PersonalProfile.findByPk(profileId);
+    const { pecodigo } = req.params;
+
+    const personalProfile = await PersonalProfile.findOne({
+      where: { pecodigo },
+    });
     if (!personalProfile) {
       return res.status(404).json({ error: "Perfil personal no encontrado" });
     }

@@ -2,11 +2,9 @@ const jwt = require("jsonwebtoken");
 const db = require("../models");
 
 exports.showLoginForm = async (req, res) => {
-  return res
-    .status(403)
-    .json({
-      message: "Este sería el sustituto temporal de la vista del Login",
-    });
+  return res.status(200).json({
+    message: "Este sería el sustituto temporal de la vista del Login",
+  });
 };
 
 exports.login = async (req, res) => {
@@ -18,6 +16,11 @@ exports.login = async (req, res) => {
     });
     if (!user) {
       return res.status(404).json({ error: "Usuario no encontrado" });
+    }
+    if (user.blocked) {
+      return res
+        .status(403)
+        .json({ error: "Su cuenta se encuentra suspendida" });
     }
 
     const isMatch = await user.comparePassword(password);

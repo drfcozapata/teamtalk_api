@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const noticeController = require("../controllers/noticeController");
 const authMiddleware = require("../middlewares/authMiddleware");
-const { checkIfBlocked } = require("../middlewares/checkIfBlocked");
+const checkIfBlocked = require("../middlewares/checkIfBlocked");
 
 router.use(checkIfBlocked);
 

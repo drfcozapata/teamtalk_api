@@ -1,31 +1,23 @@
-const { User } = require("../models");
+const db = require("../models");
+const User = db.User;
 
 const checkIfBlocked = async (req, res, next) => {
   try {
-    // Suponiendo que el ID del usuario está en el token o en la sesión
-    const userId = req.user.id; // Ajusta esto según tu implementación de autenticación
+    if (req.user) {
+      const user = await User.findByPk(req.user.id);
 
-    // Buscar el usuario en la base de datos
-    const user = await User.findByPk(userId);
-
-    // Si el usuario no existe, devolver un error
-    if (!user) {
-      return res.status(404).json({ message: "Usuario no encontrado" });
+      if (user && user.blocked && req.path !== "/suspended-account") {
+        return res
+          .status(403)
+          .json({ message: "Su cuenta ha sido suspendida" });
+      }
     }
 
-    // Comprobar si el usuario está bloqueado
-    if (user.blocked) {
-      return res
-        .status(403)
-        .json({ message: "Acceso denegado: cuenta bloqueada" });
-    }
-
-    // Si no está bloqueado, continuar con la siguiente función middleware
     next();
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: "Error del servidor" });
+    console.error("Error en el middleware checkIfBlocked:", error);
+    return res.status(500).json({ error: "Error interno del servidor" });
   }
 };
 
-module.exports = { checkIfBlocked };
+module.exports = checkIfBlocked;
