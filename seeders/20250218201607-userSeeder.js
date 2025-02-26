@@ -9,34 +9,37 @@ module.exports = {
       {
         name: "Francisco Zapata",
         email: "drfcozapata@gmail.com",
-        password: bcrypt.hashSync("password123", 10),
+        password:
+          "$2a$10$uvnCeNMUg/68fWYj74/Ec.py3q2mkc0iqOCliM.0En8Zb7ajwHUsu",
         role: "SuperAdmin",
         blocked: false,
       },
       {
         name: "James Bond",
         email: "bond007@mi5.gov.uk",
-        password: bcrypt.hashSync("password123", 10),
+        password:
+          "$2a$10$uvnCeNMUg/68fWYj74/Ec.py3q2mkc0iqOCliM.0En8Zb7ajwHUsu",
         role: "Administrador",
         blocked: false,
       },
       {
         name: "John Doe",
         email: "john@example.com",
-        password: bcrypt.hashSync("password123", 10),
+        password:
+          "$2a$10$uvnCeNMUg/68fWYj74/Ec.py3q2mkc0iqOCliM.0En8Zb7ajwHUsu",
         role: "Empleado",
         blocked: true,
       },
       {
         name: "Jane Doe",
         email: "jane@example.com",
-        password: bcrypt.hashSync("password123", 10),
+        password:
+          "$2a$10$uvnCeNMUg/68fWYj74/Ec.py3q2mkc0iqOCliM.0En8Zb7ajwHUsu",
         role: "Empleado",
         blocked: false,
       },
     ];
 
-    // Crear usuarios y sus perfiles personales
     for (const userData of users) {
       const user = await User.create(userData);
 
