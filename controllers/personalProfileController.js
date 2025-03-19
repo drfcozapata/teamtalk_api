@@ -31,7 +31,7 @@ exports.index = async (req, res) => {
       peasociado: profile.peasociado,
       peestado: profile.peestado,
       pediasvacaciones: profile.pediasvacaciones,
-      blocked: profile.user.blocked,
+      blocked: profile.user ? profile.user.blocked : false,
     }));
 
     return res.json({
@@ -41,7 +41,9 @@ exports.index = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: "Error del servidor" });
+    return res
+      .status(500)
+      .json({ error: "Error del servidor", details: error.message });
   }
 };
 
