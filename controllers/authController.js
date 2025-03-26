@@ -18,9 +18,10 @@ exports.login = async (req, res) => {
       return res.status(404).json({ error: "Usuario no encontrado" });
     }
     if (user.blocked) {
-      return res
-        .status(403)
-        .json({ error: "Su cuenta se encuentra suspendida" });
+      return res.status(403).json({
+        error: "Su cuenta se encuentra suspendida",
+        code: "ACCOUNT_SUSPENDED",
+      });
     }
 
     const isMatch = await user.comparePassword(password);
