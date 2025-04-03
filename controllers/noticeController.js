@@ -16,7 +16,6 @@ exports.index = async (req, res) => {
     const otherNotices = notices.filter(
       (notice) => notice.createdAt.toISOString().split("T")[0] !== today
     );
-    const lastNotice = notices[0];
 
     const formatNotice = (notice) => ({
       id: notice.id,
@@ -34,28 +33,29 @@ exports.index = async (req, res) => {
       }),
     });
 
-    const lastNoticeFormatted = lastNotice
-      ? formatNotice(lastNotice)
-      : {
-          id: null,
-          user_id: null,
-          username: "No disponible",
-          avatar: "default-avatar.png",
-          category: "General",
-          title: "No hay anuncios disponibles",
-          content: "",
-          img: "notices/00.jpg",
-          date: new Date().toLocaleDateString("es-ES", {
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-          }),
-        };
+    const lastNotice =
+      notices.length > 0
+        ? formatNotice(notices[0])
+        : {
+            id: null,
+            user_id: null,
+            username: "No disponible",
+            avatar: "default-avatar.png",
+            category: "General",
+            title: "No hay anuncios disponibles",
+            content: "",
+            img: "notices/00.jpg",
+            date: new Date().toLocaleDateString("es-ES", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            }),
+          };
 
     return res.json({
       todayNotices: todayNotices.map(formatNotice),
       otherNotices: otherNotices.map(formatNotice),
-      lastNotice: lastNoticeFormatted,
+      lastNotice: lastNotice,
     });
   } catch (error) {
     console.error(error);

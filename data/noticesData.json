@@ -13,8 +13,8 @@
         "En conjunto, HTML, CSS y JavaScript forman la tríada esencial del desarrollo web. Aprender a utilizarlas de manera efectiva no solo abre puertas a oportunidades profesionales, sino que también permite a los desarrolladores crear experiencias únicas y personalizadas para los usuarios. Con el continuo avance de la tecnología, dominar estas herramientas es más relevante que nunca."
       ],
       "img": "notice/01.jpg",
-      "created_at": "2025-03-28 7:16:27",
-      "updated_at": "2025-03-28 7:16:27"
+      "createdAt": "2025-03-28 7:16:27",
+      "updatedAt": "2025-03-28 7:16:27"
     },
     {
       "id": 2,
@@ -28,8 +28,8 @@
         "En resumen, Nuxt.js es una excelente opción para quienes buscan aprovechar al máximo Vue.js en sus proyectos."
       ],
       "img": "notice/02.jpg",
-      "created_at": "2025-03-29 10:07:12",
-      "updated_at": "2025-03-29 10:07:12"
+      "createdAt": "2025-03-29 10:07:12",
+      "updatedAt": "2025-03-29 10:07:12"
     },
     {
       "id": 3,
@@ -44,8 +44,8 @@
         "Sin duda, Laravel 12 es una herramienta poderosa para cualquier desarrollador PHP."
       ],
       "img": "notice/03.jpg",
-      "created_at": "2025-03-31 14:18:07",
-      "updated_at": "2025-03-31 14:18:07"
+      "createdAt": "2025-03-31 14:18:07",
+      "updatedAt": "2025-03-31 14:18:07"
     },
     {
       "id": 4,
@@ -58,8 +58,8 @@
         "Otra ventaja de Tailwind CSS es su enfoque en el rendimiento. Al utilizar clases utilitarias, se minimiza el tamaño del CSS final, lo que mejora la velocidad de carga de la página. Esto, combinado con la posibilidad de purgar estilos no utilizados en producción, hace que Tailwind sea una opción ideal para proyectos que requieren tanto personalización como eficiencia."
       ],
       "img": "notice/04.jpg",
-      "created_at": "2025-03-31 8:27:10",
-      "updated_at": "2025-03-31 8:27:10"
+      "createdAt": "2025-03-31 8:27:10",
+      "updatedAt": "2025-03-31 8:27:10"
     },
     {
       "id": 5,
@@ -75,8 +75,8 @@
         "En resumen, Vue.js 3 es una opción excepcional para cualquier desarrollador que busque crear aplicaciones web modernas y eficientes."
       ],
       "img": "notice/05.jpg",
-      "created_at": "2025-04-01 15:15:00",
-      "updated_at": "2025-04-01 15:15:00"
+      "createdAt": "2025-04-01 15:15:00",
+      "updatedAt": "2025-04-01 15:15:00"
     },
     {
       "id": 6,
@@ -89,8 +89,8 @@
         "Sin embargo, la rápida adopción de la IA también plantea desafíos éticos y sociales. Preguntas sobre la privacidad de los datos, el sesgo algorítmico y el impacto en el empleo son temas candentes en el debate actual. Es crucial que los desarrolladores y responsables de políticas trabajen juntos para establecer marcos que aseguren un uso responsable y ético de la IA, garantizando que sus beneficios sean accesibles para todos."
       ],
       "img": "notice/06.jpg",
-      "created_at": "2025-04-01 18:09:34",
-      "updated_at": "2025-04-01 18:09:34"
+      "createdAt": "2025-04-01 18:09:34",
+      "updatedAt": "2025-04-01 18:09:34"
     },
     {
       "id": 7,
@@ -104,8 +104,8 @@
         "Es esencial que los programadores se mantengan informados sobre las mejores prácticas de seguridad y las implicaciones legales al trabajar con criptomonedas, asegurando así la confianza en sus aplicaciones."
       ],
       "img": "notice/07.jpg",
-      "created_at": "2025-04-02 6:27:02",
-      "updated_at": "2025-04-02 6:27:02"
+      "createdAt": "2025-04-02 6:27:02",
+      "updatedAt": "2025-04-02 6:27:02"
     },
     {
       "id": 8,
@@ -120,8 +120,8 @@
         "Sin embargo, es fundamental que los desarrolladores comprendan cómo utilizar estas herramientas de manera efectiva, equilibrando la automatización con la creatividad humana."
       ],
       "img": "notice/08.jpg",
-      "created_at": "2025-04-03 17:04:09",
-      "updated_at": "2025-04-03 17:04:09"
+      "createdAt": "2025-04-03 17:04:09",
+      "updatedAt": "2025-04-03 17:04:09"
     },
     {
       "id": 9,
@@ -134,8 +134,8 @@
         "demás, la IA puede ser utilizada para optimizar el rendimiento de la aplicación. Herramientas que analizan el tráfico y el comportamiento del usuario pueden ayudar a identificar cuellos de botella y mejorar la velocidad de carga. Al combinar Nuxt.js con tecnologías de IA, los desarrolladores pueden crear aplicaciones que no solo son visualmente atractivas, sino también altamente funcionales y eficientes."
       ],
       "img": "notice/09.jpg",
-      "created_at": "2025-04-04 12:06:27",
-      "updated_at": "2025-04-04 12:06:27"
+      "createdAt": "2025-04-04 09:06:27",
+      "updatedAt": "2025-04-04 09:06:27"
     },
     {
       "id": 10,
@@ -149,8 +149,8 @@
         "En resumen, Laravel y la inteligencia artificial son una combinación poderosa que promete transformar la forma en que interactuamos con la tecnología."
       ],
       "img": "notice/10.jpg",
-      "created_at": "2025-04-04 09:37:45",
-      "updated_at": "2025-04-04 09:37:45"
+      "createdAt": "2025-04-04 12:37:45",
+      "updatedAt": "2025-04-04 12:37:45"
     }
   ]
 }
