@@ -1,6 +1,8 @@
 const db = require("../models");
 const Notice = db.Notice;
 const User = db.User;
+const path = require("path");
+const fs = require("fs");
 
 exports.index = async (req, res) => {
   try {
@@ -21,11 +23,11 @@ exports.index = async (req, res) => {
       id: notice.id,
       user_id: notice.user_id,
       username: notice.user.name,
-      avatar: notice.user.profile_photo_path || "avatars/0000.png",
+      avatar: notice.user.profile_photo_path || "0000.png",
       category: notice.category,
       title: notice.title,
       content: notice.content.replace(/\n/g, "<br>"),
-      img: notice.img || "notices/00.jpg",
+      img: notice.img || "00.jpg",
       date: notice.createdAt.toLocaleDateString("es-ES", {
         year: "numeric",
         month: "short",
@@ -40,7 +42,7 @@ exports.index = async (req, res) => {
             id: null,
             user_id: null,
             username: "No disponible",
-            avatar: "avatars/0000.png",
+            avatar: "0000.png",
             category: "General",
             title: "No hay anuncios disponibles",
             content: "",
@@ -67,15 +69,50 @@ exports.store = async (req, res) => {
   try {
     const { user_id, category, title, content } = req.body;
 
+    let contentArray;
+    try {
+      contentArray =
+        typeof content === "string" ? JSON.parse(content) : content;
+    } catch (parseError) {
+      console.error("Error parsing content:", parseError);
+      return res.status(400).json({
+        message: "Error al parsear el contenido",
+        errors: parseError.message,
+      });
+    }
+
     const noticeData = {
-      userId: user_id,
+      user_id,
       category,
       title,
-      content,
+      content: JSON.stringify(contentArray),
     };
 
     if (req.file) {
-      noticeData.img = req.file.path;
+      const timestamp = Date.now();
+      const fileExtension = path.extname(req.file.originalname);
+      const fileName = `${timestamp}${fileExtension}`;
+
+      const uploadsDir = path.join(__dirname, "../assets/notices");
+      const destPath = path.join(uploadsDir, fileName);
+
+      if (!fs.existsSync(uploadsDir)) {
+        fs.mkdirSync(uploadsDir, { recursive: true });
+      }
+
+      try {
+        await fs.promises.copyFile(req.file.path, destPath);
+
+        await fs.promises.unlink(req.file.path);
+
+        noticeData.img = fileName;
+      } catch (fileError) {
+        console.error("Error al manejar el archivo:", fileError);
+        return res.status(400).json({
+          message: "Error al procesar la imagen",
+          errors: fileError.message,
+        });
+      }
     }
 
     const notice = await Notice.create(noticeData);
@@ -85,9 +122,10 @@ exports.store = async (req, res) => {
       notice,
     });
   } catch (error) {
+    console.error("Error en store:", error);
     res.status(400).json({
       message: "Error al crear anuncio",
-      errors: error.errors,
+      errors: error.message,
     });
   }
 };
